@@ -1,13 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-
-import reducer from './reducers';
-import todos from './todos';
+import store from './store';
 import App from './App';
-
-const store = createStore(reducer, todos);
 
 ReactDOM.render(
     <Provider store={store}>

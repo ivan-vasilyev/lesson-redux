@@ -3,7 +3,7 @@ import Header from '../components/Header';
 
 function mapStateToProps(state) {
     return {
-        todos: state
+        todos: state.todos
     };
 }
 
