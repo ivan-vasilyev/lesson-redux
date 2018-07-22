@@ -2,4 +2,4 @@
 
 React/Redux TodoManager
 
-Add filter
+Add webserver requests
