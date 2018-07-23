@@ -1,20 +1,21 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import promise from 'redux-promise';
+import thunk from 'redux-thunk';
 import reducer from '../reducers';
 
-function addPromiseSupport(store) {
+/* function addPromiseThunkSupport(store) {
     const dispatch = store.dispatch;
     
     return action => {
         if (typeof action.then === 'function') {
             return action.then(dispatch);
-        } else {
-            return dispatch(action);
+        } else if (typeof action === 'function') {
+            return action(dispatch);
         }
+        return dispatch(action);
     };
-}
+} */
 
-const store = createStore(reducer);
-
-store.dispatch = addPromiseSupport(store);
+const store = createStore(reducer, applyMiddleware(promise, thunk));
 
 export default store;

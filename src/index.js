@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import App from './App';
-import { getTodos, requestTodos } from './actions';
+import { getTodos } from './actions';
 
-store.dispatch(requestTodos());
 store.dispatch(getTodos());
 
 ReactDOM.render(
