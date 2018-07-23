@@ -5,7 +5,8 @@ import { getFilteredTodos } from '../reducers/todos'
 
 function mapStateToProps(state) {
     return {
-        todos: getFilteredTodos(state)
+        todos: getFilteredTodos(state),
+        fetching: state.fetching
     };
 }
 

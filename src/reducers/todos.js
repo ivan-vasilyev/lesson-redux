@@ -1,4 +1,4 @@
-import { ADD_TODO, EDIT_TODO, DELETE_TODO, TOGGLE_TODO } from '../actions';
+import { GET_TODOS, ADD_TODO, EDIT_TODO, DELETE_TODO, TOGGLE_TODO } from '../actions';
 
 function todoReducer(state = {}, action) {
     switch(action.type) {
@@ -32,9 +32,12 @@ function todoReducer(state = {}, action) {
 }
 
 export default function reducer(state = [], action) {
-    console.dir(state);
     switch(action.type) {
-        case ADD_TODO:  return [...state, todoReducer(undefined, action)];
+        case GET_TODOS: 
+            return action.todos;
+
+        case ADD_TODO:  
+            return [...state, todoReducer(undefined, action)];
 
         case DELETE_TODO: 
             const index = state.findIndex(todo => todo.id === action.id);
@@ -49,7 +52,8 @@ export default function reducer(state = [], action) {
         case EDIT_TODO: 
             return state.map(todo => todoReducer(todo, action));
 
-        default: return state;
+        default: 
+            return state;
     }
 }
 
