@@ -1,9 +1,12 @@
-import { createStore} from 'redux';
+import { createStore, applyMiddleware } from 'redux';
+import promise from 'redux-promise';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 import reducer from '../reducers';
 
-const store = createStore(reducer);
+const store = createStore(reducer, applyMiddleware(promise, thunk, logger));
 
-const addPromiseSupport = store => next => action => {
+/* const addPromiseSupport = store => next => action => {
     if (typeof action.then === 'function') {
         return action.then(next);
     } 
@@ -26,8 +29,10 @@ const addLogSupport = store => next => action => {
     return result;
 };
 
-const middlewares = [addLogSupport, addPromiseSupport, addThunkSupport];
+function applyMiddleware(store, ...middlewares) {
+    middlewares.slice().reverse().forEach(middleware => store.dispatch = middleware(store)(store.dispatch));
+}
 
-middlewares.slice().reverse().forEach(middleware => store.dispatch = middleware(store)(store.dispatch));
+applyMiddleware(store, addLogSupport, addPromiseSupport, addThunkSupport); */
 
 export default store;
