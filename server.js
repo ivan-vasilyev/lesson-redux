@@ -67,7 +67,7 @@ app.delete('/api/todos/:id', (req, res) => {
 
     todos.splice(index, 1);
 
-    res.sendStatus(204);
+    res.send({id: req.params.id});
 });
 
 app.listen(app.get('port'), () => console.log(`Server is listening: http://localhost:${app.get('port')}`));
